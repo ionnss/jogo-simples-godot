@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://cejk5j41xw2lo"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_2fggj"]
+[ext_resource type="Texture2D" uid="uid://ey6y24w44lsb" path="res://speedy_saucer_assets/purple.png" id="1_7iubb"]
+[ext_resource type="PackedScene" uid="uid://85aggom1ljac" path="res://personagem.tscn" id="2_rqib1"]
+[ext_resource type="PackedScene" uid="uid://dq5undjrd6bhm" path="res://maze_1.tscn" id="4_5ofta"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xr4ge"]
+line_spacing = 5.0
+font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_giax4"]
+line_spacing = 5.0
+font_size = 24
+font_color = Color(0.898424, 0.614273, 0.957353, 1)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_2fggj")
+
+[node name="Graphics" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Graphics"]
+layer = -10
+
+[node name="Background" type="TextureRect" parent="Graphics/CanvasLayer"]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7iubb")
+stretch_mode = 1
+
+[node name="StartLabel" type="Label" parent="Graphics"]
+z_index = -25
+offset_left = 870.0
+offset_top = 375.0
+offset_right = 1018.0
+offset_bottom = 471.0
+text = "START
+"
+label_settings = SubResource("LabelSettings_xr4ge")
+
+[node name="TutorialLabel" type="Label" parent="Graphics"]
+z_index = -25
+offset_left = 349.0
+offset_top = 434.0
+offset_right = 985.0
+offset_bottom = 681.0
+text = "Regras:
+- Use as teclas A W S D
+  para se movimentar
+- Vá do Início ao Fim
+- O jogo vai reiniciar caso
+  saia do área!
+"
+label_settings = SubResource("LabelSettings_giax4")
+autowrap_mode = 2
+
+[node name="EndLabel" type="Label" parent="Graphics"]
+z_index = -25
+offset_left = 3946.0
+offset_top = -998.0
+offset_right = 4094.0
+offset_bottom = -902.0
+text = "END
+"
+label_settings = SubResource("LabelSettings_xr4ge")
+
+[node name="Personagem" parent="." instance=ExtResource("2_rqib1")]
+z_index = 1
+position = Vector2(959, 541)
+
+[node name="Maze1" parent="." instance=ExtResource("4_5ofta")]
+z_index = -50
+position = Vector2(953, 543)
+
+[connection signal="body_exited" from="Maze1" to="." method="_on_maze_1_body_exited"]

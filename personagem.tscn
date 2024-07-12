@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://85aggom1ljac"]
+
+[ext_resource type="Script" path="res://personagem.gd" id="1_8fj07"]
+[ext_resource type="Texture2D" uid="uid://bcmpy6u21ppoj" path="res://Ghost/ghost_single.tres" id="2_2b6d5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nklok"]
+radius = 8.544
+
+[node name="Personagem" type="RigidBody2D"]
+gravity_scale = 1.66533e-16
+script = ExtResource("1_8fj07")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, -7)
+scale = Vector2(2.60938, 2.60938)
+texture = ExtResource("2_2b6d5")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nklok")
+debug_color = Color(0.92549, 0.0470588, 0.662745, 0.27451)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
